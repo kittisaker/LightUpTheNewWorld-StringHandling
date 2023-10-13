@@ -1,4 +1,4 @@
-str1 = "Hello"  # "Hello" is interned
-str2 = "Hello"  # Reuses the interned "Hello"
+number = 42
+result = f"The answer is: {number}"
 
-print(str1 is str2)  # True (both variables reference the same interned "Hello")
+print(result)  # Output: "The answer is: 42"
