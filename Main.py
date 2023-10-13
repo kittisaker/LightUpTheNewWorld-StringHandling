@@ -1,6 +1,4 @@
-mutable_string = ['Hello']
-mutable_string.append(' ')
-mutable_string.append('World');
+str1 = "Hello"  # "Hello" is interned
+str2 = "Hello"  # Reuses the interned "Hello"
 
-result = ''.join(mutable_string)
-print(result); # Output: "Hello World"
+print(str1 is str2)  # True (both variables reference the same interned "Hello")
