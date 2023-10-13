@@ -1,4 +1,16 @@
-number = 42
-result = f"The answer is: {number}"
+str = "Hello, World!"
+prefix = "Hello"
+suffix = "World!"
 
-print(result)  # Output: "The answer is: 42"
+hasPrefix = str.startswith(prefix)
+hasSuffix = str.endswith(suffix)
+
+if hasPrefix:
+    print("String has the prefix.")
+else:
+    print("String does not have the prefix.")
+
+if hasSuffix:
+    print("String has the suffix.")
+else:
+    print("String does not have the suffix.")

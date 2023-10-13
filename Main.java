@@ -1,8 +1,22 @@
 public class Main {
     public static void main(String[] args) {
-        int number = 42;
-        String result = "The answer is: " + number;
+        String str = "Hello, World!";
+        String prefix = "Hello";
+        String suffix = "World!";
 
-        System.out.println(result);  // Output: "The answer is: 42"
+        boolean hasPrefix = str.startsWith(prefix);
+        boolean hasSuffix = str.endsWith(suffix);
+
+        if (hasPrefix) {
+            System.out.println("String has the prefix.");
+        } else {
+            System.out.println("String does not have the prefix.");
+        }
+
+        if (hasSuffix) {
+            System.out.println("String has the suffix.");
+        } else {
+            System.out.println("String does not have the suffix.");
+        }
     }
 }
