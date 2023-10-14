@@ -1,69 +1,9 @@
-# LightUpTheNewWorld-StringHandling : chapter 4 String Searching Methods
+# LightUpTheNewWorld-StringHandling : chapter 5 String Modifying Methods with Examples
 
-## 1. Searching for a Character or Substring
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
+## 1. concat(String str)
+See chapter-3
 
-int main() {
-    string str = "Hello, World!";
-    string substring = "World";
-
-    size_t found = str.find(substring);
-
-    if (found != string::npos) {
-        cout << "Substring found at position: " << found << endl;
-    } else {
-        cout << "Substring not found." << endl;
-    }
-
-    return 0;
-}
-```
-
-```java
-public class Main {
-    public static void main(String[] args) {
-        String str = "Hello, World!";
-        String substring = "World";
-
-        int found = str.indexOf(substring);
-
-        if (found != -1) {
-            System.out.println("Substring found at position: " + found);
-        } else {
-            System.out.println("Substring not found.");
-        }
-    }
-}
-```
-
-```typescript
-let str: string = "Hello, World!";
-let substring: string = "World";
-
-let found: number = str.indexOf(substring);
-
-if (found !== -1) {
-    console.log(`Substring found at position: ${found}`);
-} else {
-    console.log("Substring not found.");
-}
-```
-
-```python
-str = "Hello, World!"
-substring = "World"
-
-if substring in str:
-    position = str.find(substring)
-    print(f"Substring found at position: {position}")
-else:
-    print("Substring not found.")
-```
-
-## 2. Searching for the Last Occurrence
+## 2. replace string
 ```cpp
 #include <iostream>
 #include <string>
@@ -71,63 +11,57 @@ using namespace std;
 
 int main() {
     string str = "Hello, World! Hello!";
-    string substring = "Hello";
+    string target = "Hello";
+    string replacement = "Hi";
 
-    size_t found = str.rfind(substring);
-
-    if (found != string::npos) {
-        cout << "Last occurrence found at position: " << found << endl;
-    } else {
-        cout << "Substring not found." << endl;
+    size_t pos = str.find(target);
+    while (pos != string::npos) {
+        str.replace(pos, target.length(), replacement);
+        pos = str.find(target, pos + replacement.length());
     }
 
+    cout << str << endl; // Output: "Hi, World! Hi!"
+    
     return 0;
 }
+
 ```
 
 ```java
 public class Main {
     public static void main(String[] args) {
         String str = "Hello, World! Hello!";
-        String substring = "Hello";
+        String target = "Hello";
+        String replacement = "Hi";
 
-        int found = str.lastIndexOf(substring);
+        String result = str.replace(target, replacement);
 
-        if (found != -1) {
-            System.out.println("Last occurrence found at position: " + found);
-        } else {
-            System.out.println("Substring not found.");
-        }
+        System.out.println(result); // Output: "Hi, World! Hi!"
     }
 }
 ```
 
-```typescript
+```Typescript
 let str: string = "Hello, World! Hello!";
-let substring: string = "Hello";
+let target: string = "Hello";
+let replacement: string = "Hi";
 
-let found: number = str.lastIndexOf(substring);
+let result: string = str.replace(new RegExp(target, 'g'), replacement); // 'g' : global" flag
 
-if (found !== -1) {
-    console.log(`Last occurrence found at position: ${found}`);
-} else {
-    console.log("Substring not found.");
-}
+console.log(result); // Output: "Hi, World! Hi!"
 ```
 
 ```python
 str = "Hello, World! Hello!"
-substring = "Hello"
+target = "Hello"
+replacement = "Hi"
 
-found = str.rfind(substring)
+result = str.replace(target, replacement)
 
-if found != -1:
-    print(f"Last occurrence found at position: {found}")
-else:
-    print("Substring not found.")
+print(result)  # Output: "Hi, World! Hi!"
 ```
 
-## 3. Checking If a String Contains a Sequence
+## 3. substring
 ```cpp
 #include <iostream>
 #include <string>
@@ -135,13 +69,70 @@ using namespace std;
 
 int main() {
     string str = "Hello, World!";
-    string sequence = "World";
+    
+    // Extract a substring from index 7 to the end
+    string substring = str.substr(7);
 
-    if (str.find(sequence) != string::npos) {
-        cout << "String contains the sequence." << endl;
-    } else {
-        cout << "String does not contain the sequence." << endl;
+    cout << substring << endl; // Output: "World!"
+    
+    return 0;
+}
+```
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        
+        // Extract a substring from index 7 to the end
+        String substring = str.substring(7);
+
+        System.out.println(substring); // Output: "World!"
     }
+}
+```
+
+```typescript
+let str: string = "Hello, World!";
+
+// Extract a substring from index 7 to the end
+let substring: string = str.slice(7);
+
+console.log(substring); // Output: "World!"
+```
+
+```python
+str = "Hello, World!"
+
+# Extract a substring from index 7 to the end
+substring = str[7:]
+
+print(substring)  # Output: "World!"
+```
+
+## 4. Lower case and Upper case
+```java
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+
+int main() {
+    string str = "Hello, World!";
+
+    // Convert to lowercase
+    for (char &c : str) {
+        c = tolower(c);
+    }
+
+    cout << "Lowercase: " << str << endl;
+
+    // Convert to uppercase
+    for (char &c : str) {
+        c = toupper(c);
+    }
+
+    cout << "Uppercase: " << str << endl;
 
     return 0;
 }
@@ -151,62 +142,145 @@ int main() {
 public class Main {
     public static void main(String[] args) {
         String str = "Hello, World!";
-        String sequence = "World";
 
-        if (str.contains(sequence)) {
-            System.out.println("String contains the sequence.");
-        } else {
-            System.out.println("String does not contain the sequence.");
-        }
+        // Convert to lowercase
+        String lowercase = str.toLowerCase();
+        System.out.println("Lowercase: " + lowercase);
+
+        // Convert to uppercase
+        String uppercase = str.toUpperCase();
+        System.out.println("Uppercase: " + uppercase);
     }
 }
 ```
 
-```typescript
+```Typescript
 let str: string = "Hello, World!";
-let sequence: string = "World";
 
-if (str.includes(sequence)) {
-    console.log("String contains the sequence.");
-} else {
-    console.log("String does not contain the sequence.");
-}
+// Convert to lowercase
+let lowercase: string = str.toLowerCase();
+console.log("Lowercase: " + lowercase);
+
+// Convert to uppercase
+let uppercase: string = str.toUpperCase();
+console.log("Uppercase: " + uppercase);
 ```
 
 ```python
 str = "Hello, World!"
-sequence = "World"
 
-if sequence in str:
-    print("String contains the sequence.")
-else:
-    print("String does not contain the sequence.")
+# Convert to lowercase
+lowercase = str.lower()
+print("Lowercase:", lowercase)
+
+# Convert to uppercase
+uppercase = str.upper()
+print("Uppercase:", uppercase)
 ```
 
-## 4. Checking Prefix and Suffix
+## 5. Trim String
 ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
-int main() {
-    string str = "Hello, World!";
-    string prefix = "Hello";
-    string suffix = "World!";
-
-    bool hasPrefix = str.compare(0, prefix.length(), prefix) == 0;
-    bool hasSuffix = str.compare(str.length() - suffix.length(), suffix.length(), suffix) == 0;
-
-    if (hasPrefix) {
-        cout << "String has the prefix." << endl;
-    } else {
-        cout << "String does not have the prefix." << endl;
+string trim(const string& str) {
+    size_t first = str.find_first_not_of(" \t\n\r");
+    size_t last = str.find_last_not_of(" \t\n\r");
+    
+    if (first == string::npos) {
+        return "";
     }
 
-    if (hasSuffix) {
-        cout << "String has the suffix." << endl;
-    } else {
-        cout << "String does not have the suffix." << endl;
+    return str.substr(first, (last - first + 1));
+}
+
+int main() {
+    string str = "  Hello, World!  ";
+
+    string trimmed = trim(str);
+
+    cout << "Trimmed: \"" << trimmed << "\"" << endl;
+
+    return 0;
+}
+```
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String str = "  Hello, World!  ";
+        
+        String trimmed = str.trim();
+        
+        System.out.println("Trimmed: \"" + trimmed + "\"");
+    }
+}
+```
+
+```typescript
+let str: string = "  Hello, World!  ";
+
+let trimmed: string = str.trim();
+
+console.log("Trimmed: \"" + trimmed + "\"");
+```
+
+```python
+str = "  Hello, World!  "
+
+trimmed = str.strip()
+
+print("Trimmed: \"" + trimmed + "\"")
+```
+
+## 6. Split String
+```cpp
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    string str = "apple,banana,cherry";
+    vector<string> tokens;
+    istringstream ss(str);
+    string token;
+
+    while (getline(ss, token, ',')) {
+        tokens.push_back(token);
+    }
+
+    for (const string& t : tokens) {
+        cout << t << endl;
+    }
+
+    return 0;
+}
+```
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+    string str = "apple,banana,cherry";
+    vector<string> tokens;
+    size_t start = 0;
+    size_t end = 0;
+
+    while ((end = str.find(",", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    for (const string& t : tokens) {
+        cout << t << endl;
     }
 
     return 0;
@@ -216,132 +290,31 @@ int main() {
 ```java
 public class Main {
     public static void main(String[] args) {
-        String str = "Hello, World!";
-        String prefix = "Hello";
-        String suffix = "World!";
+        String str = "apple,banana,cherry";
+        String[] tokens = str.split(",");
 
-        boolean hasPrefix = str.startsWith(prefix);
-        boolean hasSuffix = str.endsWith(suffix);
-
-        if (hasPrefix) {
-            System.out.println("String has the prefix.");
-        } else {
-            System.out.println("String does not have the prefix.");
-        }
-
-        if (hasSuffix) {
-            System.out.println("String has the suffix.");
-        } else {
-            System.out.println("String does not have the suffix.");
+        for (String token : tokens) {
+            System.out.println(token);
         }
     }
 }
 ```
 
 ```typescript
-let str: string = "Hello, World!";
-let prefix: string = "Hello";
-let suffix: string = "World!";
+let str: string = "apple,banana,cherry";
+let tokens: string[] = str.split(",");
 
-let hasPrefix: boolean = str.startsWith(prefix);
-let hasSuffix: boolean = str.endsWith(suffix);
-
-if (hasPrefix) {
-    console.log("String has the prefix.");
-} else {
-    console.log("String does not have the prefix.");
-}
-
-if (hasSuffix) {
-    console.log("String has the suffix.");
-} else {
-    console.log("String does not have the suffix.");
+for (let token of tokens) {
+    console.log(token);
 }
 ```
 
 ```python
-str = "Hello, World!"
-prefix = "Hello"
-suffix = "World!"
+str = "apple,banana,cherry"
+tokens = str.split(",")
 
-hasPrefix = str.startswith(prefix)
-hasSuffix = str.endswith(suffix)
-
-if hasPrefix:
-    print("String has the prefix.")
-else:
-    print("String does not have the prefix.")
-
-if hasSuffix:
-    print("String has the suffix.")
-else:
-    print("String does not have the suffix.")
-```
-
-## 5. Matching Regular Expressions
-```cpp
-#include <iostream>
-#include <regex>
-#include <string>
-
-int main() {
-    std::string text = "The quick brown fox jumps over the lazy dog.";
-    std::regex pattern("quick.*dog");
-
-    if (std::regex_search(text, pattern)) {
-        std::cout << "Pattern found in the text." << std::endl;
-    } else {
-        std::cout << "Pattern not found in the text." << std::endl;
-    }
-
-    return 0;
-}
-```
-
-```java
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class RegexMatchExample {
-    public static void main(String[] args) {
-        String text = "The quick brown fox jumps over the lazy dog.";
-        String pattern = "quick.*dog";
-
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(text);
-
-        if (matcher.find()) {
-            System.out.println("Pattern found in the text.");
-        } else {
-            System.out.println("Pattern not found in the text.");
-        }
-    }
-}
-```
-
-```typescript
-let text: string = "The quick brown fox jumps over the lazy dog.";
-let pattern: string = "quick.*dog";
-
-let regex: RegExp = new RegExp(pattern);
-
-if (regex.test(text)) {
-    console.log("Pattern found in the text.");
-} else {
-    console.log("Pattern not found in the text.");
-}
-```
-
-```python
-import re
-
-text = "The quick brown fox jumps over the lazy dog."
-pattern = r"quick.*dog"
-
-if re.search(pattern, text):
-    print("Pattern found in the text.")
-else:
-    print("Pattern not found in the text.")
+for token in tokens:
+    print(token)
 ```
 
 ---
