@@ -1,6 +1,8 @@
-let str: string = "apple,banana,cherry";
-let tokens: string[] = str.split(",");
+let str: string = "Hello, Hello, World!";
+let target: string = 'l';
+let replacement: string = 'X';
 
-for (let token of tokens) {
-    console.log(token);
-}
+let parts: string[] = str.split(target);
+let modifiedStr: string = parts.join(replacement);
+
+console.log("Modified string: " + modifiedStr);     // Modified string: HeXXo, HeXXo, WorXd!

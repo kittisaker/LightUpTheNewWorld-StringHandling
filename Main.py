@@ -1,5 +1,7 @@
-str = "apple,banana,cherry"
-tokens = str.split(",")
+str = "Hello, Hello, World!"
+target = 'l'
+replacement = 'X'
 
-for token in tokens:
-    print(token)
+modified_str = ''.join([c if c != target else replacement for c in str])
+
+print("Modified string:", modified_str)

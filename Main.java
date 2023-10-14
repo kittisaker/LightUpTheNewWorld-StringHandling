@@ -1,10 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        String str = "apple,banana,cherry";
-        String[] tokens = str.split(",");
+        String str = "Hello, Hello, World!";
+        char target = 'l';
+        char replacement = 'X';
 
-        for (String token : tokens) {
-            System.out.println(token);
-        }
+        String modifiedStr = str.replaceAll(String.valueOf(target), String.valueOf(replacement));
+
+        System.out.println("Modified string: " + modifiedStr);   // Modified string: HeXXo, HeXXo, WorXd!
     }
 }

@@ -317,4 +317,114 @@ for token in tokens:
     print(token)
 ```
 
+## 7. Replace All Char
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str = "Hello, Hello, World!";
+    char target = 'l';
+    char replacement = 'X';
+
+    for (char &c : str) {
+        if (c == target) {
+            c = replacement;
+        }
+    }
+
+    cout << "Modified string: " << str << endl; // Modified string: HeXXo, HeXXo, WorXd!
+
+    return 0;
+}
+```
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello, Hello, World!";
+        char target = 'l';
+        char replacement = 'X';
+
+        String modifiedStr = str.replaceAll(String.valueOf(target), String.valueOf(replacement));
+
+        System.out.println("Modified string: " + modifiedStr);   // Modified string: HeXXo, HeXXo, WorXd!
+    }
+}
+```
+
+```typescript
+let str: string = "Hello, Hello, World!";
+let target: string = 'l';
+let replacement: string = 'X';
+
+let parts: string[] = str.split(target);
+let modifiedStr: string = parts.join(replacement);
+
+console.log("Modified string: " + modifiedStr);     // Modified string: HeXXo, HeXXo, WorXd!
+```
+
+```python
+str = "Hello, Hello, World!"
+target = 'l'
+replacement = 'X'
+
+modified_str = ''.join([c if c != target else replacement for c in str])
+
+print("Modified string:", modified_str)
+```
+
+## 8. Join String
+
+```cpp
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main() {
+    string str1 = "Hello";
+    string str2 = "World";
+    
+    stringstream ss;
+    ss << str1 << "-" << str2;
+    
+    string joined = ss.str();
+
+    cout << joined << endl; // Output: "Hello-World"
+
+    return 0;
+}
+```
+
+```java
+public class JoinStringWithHyphenExample {
+    public static void main(String[] args) {
+        String str1 = "Hello";
+        String str2 = "World";
+        String joined = String.join("-", str1, str2);
+
+        System.out.println(joined); // Output: "Hello-World"
+    }
+}
+```
+
+```typescript
+let str1: string = "Hello";
+let str2: string = "World";
+let joined: string = [str1, str2].join("-");
+
+console.log(joined); // Output: "Hello-World"
+```
+
+```python
+str1 = "Hello"
+str2 = "World"
+joined = "-".join([str1, str2])
+
+print(joined)  # Output: "Hello-World"
+```
+
 ---

@@ -1,22 +1,18 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <vector>
 using namespace std;
 
 int main() {
-    string str = "apple,banana,cherry";
-    vector<string> tokens;
-    istringstream ss(str);
-    string token;
+    string str1 = "Hello";
+    string str2 = "World";
+    
+    stringstream ss;
+    ss << str1 << "-" << str2;
+    
+    string joined = ss.str();
 
-    while (getline(ss, token, ',')) {
-        tokens.push_back(token);
-    }
-
-    for (const string& t : tokens) {
-        cout << t << endl;
-    }
+    cout << joined << endl; // Output: "Hello-World"
 
     return 0;
 }
